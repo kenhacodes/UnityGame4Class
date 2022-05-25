@@ -8,6 +8,8 @@ public class MouseLook : MonoBehaviour
     public Transform playerBody;
     float xRotation = 0f;
 
+    public Inventory inv;
+
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -23,5 +25,14 @@ public class MouseLook : MonoBehaviour
 
         transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
         playerBody.Rotate(Vector3.up * mouseX);
+
+        if (inv.inventoryEnabled)
+        {
+            Cursor.lockState = CursorLockMode.None;
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+        }
     }
 }

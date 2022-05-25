@@ -52,6 +52,7 @@ public class Inventory : MonoBehaviour
 
     }
 
+    /*
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag.Equals("Item"))
@@ -61,6 +62,17 @@ public class Inventory : MonoBehaviour
             Item item = itemPickedUp.GetComponent<Item>();
 
             AddItem(itemPickedUp, item.ID, item.type, item.description, item.icon);
+        }
+    }
+    */
+
+    public void GetItem(GameObject other)
+    {
+        if (other.tag.Equals("Item"))
+        {
+            Item item = other.GetComponent<Item>();
+
+            AddItem(other, item.ID, item.type, item.description, item.icon);
         }
     }
 

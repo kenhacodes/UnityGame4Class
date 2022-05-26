@@ -21,7 +21,11 @@ public class Slot : MonoBehaviour, IPointerClickHandler
 
     public void UpdateSlot()
     {
+        Debug.Log("Esto es un sprite: "+icon);
+
         slotIconGameObject.GetComponent<Image>().sprite = icon;
+
+        Debug.Log("Este es el icono: "+ slotIconGameObject.GetComponent<Image>().sprite);
     }
 
     public void UseItem()

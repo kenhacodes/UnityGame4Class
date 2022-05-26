@@ -1,12 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class Interactor : MonoBehaviour
 {
     public LayerMask interactableLayerMask;
-    UnityEvent onInteract;
+    Interactable interactable;
+    public Image interactImage;
+    public Sprite defaultIcon;
+    public Vector2 defaultIconSize;
+    public Sprite defaultInteractIcon;
+    public Vector2 defaultInteractIconSize;
 
     void Start()
     {
@@ -21,11 +26,40 @@ public class Interactor : MonoBehaviour
         {
             if (hit.collider.GetComponent<Interactable>() != false)
             {
-                onInteract = hit.collider.GetComponent<Interactable>().onInteract;
+                if (interactable == null || interactable.Iden != hit.collider.GetComponent<Interactable>().Iden)
+                {
+                    interactable = hit.collider.GetComponent<Interactable>();
+                    
+                }
+                if (interactable.interactIcon != null)
+                {
+                    interactImage.sprite = interactable.interactIcon;
+                    if (interactable.iconSize == Vector2.zero)
+                    {
+                        interactImage.rectTransform.sizeDelta = defaultInteractIconSize;
+                    }
+                    else
+                    {
+                        interactImage.rectTransform.sizeDelta = interactable.iconSize;
+                    }
+                }
+                else
+                {
+                    interactImage.sprite = defaultInteractIcon;
+                    interactImage.rectTransform.sizeDelta = defaultInteractIconSize;
+                }
                 if (Input.GetKeyDown(KeyCode.E))
                 {
-                    onInteract.Invoke();
+                    interactable.onInteract.Invoke();
                 }
+            }
+        }
+        else
+        {
+            if (interactImage.sprite != defaultIcon)
+            {
+                interactImage.sprite = defaultIcon;
+                interactImage.rectTransform.sizeDelta = defaultIconSize;
             }
         }
     }

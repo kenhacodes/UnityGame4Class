@@ -11,9 +11,13 @@ public class Inventory : MonoBehaviour
     [HideInInspector]
     public bool inventoryEnabled;
 
-    int allSlots;
+    [HideInInspector]
+    public int allSlots;
+
     int enabledSlots;
-    GameObject[] slots;
+
+    [HideInInspector]
+    public GameObject[] slots;
 
 
     void Start()

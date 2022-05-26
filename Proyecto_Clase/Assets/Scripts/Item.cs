@@ -83,4 +83,12 @@ public class Item : MonoBehaviour
             usableItem.GetComponent<Item>().equipped = true;
         }
     }
+
+    public void ClearItem()
+    {
+        ID = 0;
+        type = null;
+        description = null;
+        icon = null;
+    }
 }

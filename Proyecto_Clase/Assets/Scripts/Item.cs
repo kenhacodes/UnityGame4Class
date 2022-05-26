@@ -25,16 +25,19 @@ public class Item : MonoBehaviour
     [HideInInspector]
     public GameObject usableItem;
 
-    public bool playerItem;
+    [HideInInspector]
+    public int allitems;
+
+    public bool notUsable;
 
     private void Start()
     {
         itemManager = GameObject.FindWithTag("ItemManager");
         descText = GameObject.FindWithTag("DescText");
 
-        if (!playerItem)
+        if (!notUsable)
         {
-            int allitems = itemManager.transform.childCount;
+            allitems = itemManager.transform.childCount;
 
             for (int i = 0; i < allitems; i++)
             {
@@ -67,6 +70,14 @@ public class Item : MonoBehaviour
 
         if (type.Equals("Usable"))
         {
+            for (int i = 0; i < allitems; i++)
+            {
+                if (itemManager.transform.GetChild(i).gameObject.activeSelf == true)
+                {
+                    itemManager.transform.GetChild(i).gameObject.SetActive(false);
+                }
+            }
+
             usableItem.SetActive(true);
 
             usableItem.GetComponent<Item>().equipped = true;

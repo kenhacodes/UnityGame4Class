@@ -14,7 +14,6 @@ public class Slot : MonoBehaviour, IPointerClickHandler
     public Sprite icon;
     public Transform slotIconGameObject;
 
-
     private void Start()
     {
         slotIconGameObject = transform.GetChild(0);

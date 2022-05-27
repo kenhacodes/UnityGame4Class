@@ -66,6 +66,8 @@ public class Item : MonoBehaviour
 
     public void ItemUsage()
     {
+        Debug.Log("Objeto descText "+ descText);
+        Debug.Log("La descripción " + description);
         descText.GetComponent<Text>().text = description;
 
         if (type.Equals("Usable"))

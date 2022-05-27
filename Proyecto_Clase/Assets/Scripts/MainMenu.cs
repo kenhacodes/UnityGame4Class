@@ -6,20 +6,9 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
     public string juego;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public void StartGame(){
-        SceneManager.LoadScene(juego);
+        StartCoroutine(WaitForPlay());
     }
 
     public void OpenOptions(){
@@ -32,6 +21,12 @@ public class MainMenu : MonoBehaviour
 
     public void QuitGame(){
         Application.Quit();
-        Debug.Log("Saliendo");
+    }
+
+    private IEnumerator WaitForPlay()
+    {
+        yield return new WaitForSeconds(1.5f);
+
+        SceneManager.LoadScene(juego);
     }
 }

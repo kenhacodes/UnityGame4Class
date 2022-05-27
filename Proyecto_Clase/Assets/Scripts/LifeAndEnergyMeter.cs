@@ -8,6 +8,7 @@ public class LifeAndEnergyMeter : MonoBehaviour
     public Image livingMeter;
     public float living;
     public float maxHealth;
+    public bool countDown;
 
     public Image energyMeter;
     public float energy;
@@ -19,6 +20,17 @@ public class LifeAndEnergyMeter : MonoBehaviour
         livingMeter.fillAmount = living / maxHealth;
 
         energyMeter.fillAmount = energy / maxEnergy;
+
+        if (countDown)
+        {
+            living -= Time.deltaTime;
+        }
+
+        if (living < 0)
+        {
+            countDown = false;
+            living = 0;
+        }
 
         if (energy >= maxEnergy)
         {
@@ -33,5 +45,14 @@ public class LifeAndEnergyMeter : MonoBehaviour
         {
             energy = 0;
         }
+    }
+
+    public void HealthUp(float health)
+    {
+        living += health;
+    }
+    public void ConsumeFood(GameObject food)
+    {
+        Destroy(food);
     }
 }

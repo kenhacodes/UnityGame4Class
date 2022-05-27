@@ -82,7 +82,7 @@ public class PlayerMovement : MonoBehaviour
         
         while (!LEM.isMaxEnergy)
         {
-            LEM.energy += LEM.maxEnergy / 1000;
+            LEM.energy += LEM.maxEnergy / 800;
             yield return regenTick;
         }
         regen = null;
